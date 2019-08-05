@@ -1,7 +1,6 @@
 package com.edirectinsure.taskmanager.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -9,10 +8,12 @@ import java.util.Date;
 public class Task {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String description;
     private Date createDate;
     private Date finishDate;
+	@Column(name = "project_id")
     private Long projectId;
 
     public Long getId() {

@@ -1,10 +1,7 @@
 package com.edirectinsure.taskmanager.model;
 
 
-import javax.annotation.Generated;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -12,10 +9,12 @@ import java.util.List;
 public class Project {
 
     @Id
+    @GeneratedValue
     private Long Id;
     private String name;
 
-    @OneToMany
+    @OneToMany(orphanRemoval=true)
+    @JoinColumn(name="project_id")
     private List<Task> tasks;
 
     public Long getId() {

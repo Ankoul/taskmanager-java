@@ -1,5 +1,6 @@
 package com.edirectinsure.taskmanager.service;
 
+import com.edirectinsure.taskmanager.exception.ProjectNotFoundException;
 import com.edirectinsure.taskmanager.model.Project;
 import com.edirectinsure.taskmanager.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@SuppressWarnings({"WeakerAccess", "BooleanMethodIsAlwaysInverted"})
 @Service
 public class ProjectService {
 
@@ -26,11 +28,14 @@ public class ProjectService {
     }
 
     public Project update(Project project) {
+        if (!this.existsById(project.getId())) {
+            throw new ProjectNotFoundException(project.getId());
+        }
         return projectRepository.save(project);
     }
 
-    public Project findById(Long projectId) {
-        return projectRepository.findById(projectId).get();
+    public boolean existsById(Long projectId) {
+        return projectRepository.existsById(projectId);
     }
 
     public void delete(Long projectId) {
