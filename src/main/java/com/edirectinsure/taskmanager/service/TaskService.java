@@ -52,6 +52,8 @@ public class TaskService {
     public void deleteById(Long id) {
         Optional<Task> optionalTask = taskRepository.findById(id);
         Task storedTask = optionalTask.orElseThrow(new TaskNotFoundException(id));
+        projectService.checkProjectVisibility(storedTask.getProjectId());
+
         if (storedTask.getFinishDate() != null) {
             throw new BadRequestException("This task had already finished. Reopen to delete.");
         }

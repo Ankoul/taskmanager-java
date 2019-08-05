@@ -12,6 +12,7 @@ public class Project {
     @GeneratedValue
     private Long Id;
     private String name;
+    private Long userId;
 
     @OneToMany(orphanRemoval=true)
     @JoinColumn(name="project_id")
@@ -31,6 +32,14 @@ public class Project {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public List<Task> getTasks() {

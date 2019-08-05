@@ -19,4 +19,6 @@ public abstract class ApplicationException extends ResponseStatusException imple
     public ApplicationException get() {
         return this;
     }
+
+
 }

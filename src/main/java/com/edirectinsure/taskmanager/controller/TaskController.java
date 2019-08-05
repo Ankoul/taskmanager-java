@@ -3,9 +3,11 @@ package com.edirectinsure.taskmanager.controller;
 import com.edirectinsure.taskmanager.model.Task;
 import com.edirectinsure.taskmanager.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@PreAuthorize("isAuthenticated()")
 @RequestMapping(value = "/tasks")
 public class TaskController {
 
